@@ -3,7 +3,6 @@ BEGIN {
     print "DATE,PAN,ADDRESS,MUNICIPALITY,ASSESSEDVALUE,SALEPRICE";
 } 
 
-
 ARGIND==1 {
     assessedVal[$1] = $6;
     address[$1] = $2; 
