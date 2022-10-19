@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+source ../.env
 MYSQL_COMMAND="mysql -h${MYSQL_HOST} -uroot -p${MYSQL_ROOT_PASSWORD}"
 
 until $MYSQL_COMMAND -e'SHOW DATABASES'; do
