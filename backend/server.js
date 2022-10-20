@@ -1,10 +1,9 @@
 'use strict';
-
 const express = require('express');
 const mysql = require('mysql')
 
 const HOST = '0.0.0.0';
-const PORT = process.env.BACKEND_PORT;
+const PORT = 8080;
 const MYSQL_ROOT_PASSWORD = process.env.MYSQL_ROOT_PASSWORD;
 const MYSQL_HOST = process.env.MYSQL_HOST;
 

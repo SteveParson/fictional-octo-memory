@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
-source ../.env
 MYSQL_COMMAND="mysql -h${MYSQL_HOST} -uroot -p${MYSQL_ROOT_PASSWORD}"
 
-until $MYSQL_COMMAND -e'SHOW DATABASES'; do
+until ${MYSQL_COMMAND} -e'SHOW DATABASES'; do
     echo "Waiting for MySQL server to start"
     sleep 10
 done
 
 if [ $# -eq 0 ]; then
-
   SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
   TMP_DIR=$(mktemp -d)
 
