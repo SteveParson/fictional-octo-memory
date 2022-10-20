@@ -3,12 +3,14 @@ version: '3'
 services:
   mysql:
     image: docker.io/mysql:5.7
-    volumes:
-      - db_data:/var/lib/mysql
     restart: always
     env_file: .env
+    volumes:
+      - mysql_volume:/var/lib/mysql
+    ports:
+      - '127.0.0.1:33060:3306'
     networks:
-      - mynetwork
+      - app_network
 
   backend:
     build:
@@ -16,17 +18,19 @@ services:
       dockerfile: Dockerfile        
     volumes:
       - ./backend:/opt/app:delegated
-    env_file: .env
+    ports:
+      - '127.0.0.1:8080:8080'
     networks:
-      - mynetwork
+      - app_network
     depends_on:
       - mysql
+    env_file: .env
     # add an argument to the command below and it won't try to recreate the tables
     command: /bin/bash seedDatabase/seedDatabase.sh
 
 volumes:
-  db_data:
+  mysql_volume:
 
 networks:
-  mynetwork:
+  app_network:
     driver: bridge
