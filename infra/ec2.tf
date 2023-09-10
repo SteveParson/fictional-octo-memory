@@ -49,3 +49,24 @@ output "instance_public_ip" {
   description = "The public IP of the launched instance"
   value       = aws_instance.my_instance.public_ip
 }
+
+resource "aws_route53_zone" "aws_subdomain" {
+  name = "aws.steveparson.ca"
+}
+output "name_servers" {
+  description = "The NS records for the hosted zone"
+  value       = aws_route53_zone.subdomain.name_servers
+}
+
+resource "aws_route53_record" "ec2_instance_a_record" {
+  zone_id = aws_route53_zone.aws_subdomain.zone_id
+  name    = "proxy.aws.steveparson.ca"
+  type    = "A"
+  ttl     = "300"
+  records = [aws_instance.my_instance.public_ip]
+}
+
+output "aws_subdomain_ns" {
+  value = aws_route53_zone.aws_subdomain.name_servers
+  description = "The name servers for the aws.steveparson.ca subdomain."
+}
