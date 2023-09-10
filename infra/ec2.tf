@@ -55,7 +55,7 @@ resource "aws_route53_zone" "aws_subdomain" {
 }
 output "name_servers" {
   description = "The NS records for the hosted zone"
-  value       = aws_route53_zone.subdomain.name_servers
+  value       = aws_route53_zone.aws_subdomain.name_servers
 }
 
 resource "aws_route53_record" "ec2_instance_a_record" {
