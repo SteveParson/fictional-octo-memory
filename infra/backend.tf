@@ -19,7 +19,6 @@ resource "aws_s3_bucket" "tf_state" {
   }
 }
 
-
 resource "aws_s3_bucket_ownership_controls" "tf_state_ownership" {
   bucket = aws_s3_bucket.tf_state.id
   rule {

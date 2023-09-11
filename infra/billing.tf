@@ -19,7 +19,7 @@ resource "aws_cloudwatch_metric_alarm" "billing_alarm" {
   threshold           = "15"
   alarm_description   = "Alarm when AWS charges exceed $15"
   alarm_actions       = [aws_sns_topic.billing_alert.arn]
-  
+
   dimensions = {
     Currency = "CAD"
   }
