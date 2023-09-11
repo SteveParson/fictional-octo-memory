@@ -3,7 +3,7 @@ data "aws_ami" "al2" {
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
 
   filter {
@@ -11,7 +11,7 @@ data "aws_ami" "al2" {
     values = ["hvm"]
   }
 
-  owners = ["amazon"]
+  owners = ["099720109477"]
 }
 
 resource "aws_instance" "my_instance" {
